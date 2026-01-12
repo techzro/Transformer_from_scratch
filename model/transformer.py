@@ -1,3 +1,12 @@
+import torch
+import torch.nn as nn
+
+from .attention import MultiHeadAttentionBlock
+from .feedforward import FeedForwardBlock
+from .embeddings import InputEmbeddings, PositionalEncoding
+from .encoder import Encoder, EncoderBlock
+from .decoder import Decoder, DecoderBlock
+
 class ProjectionLayer(nn.Module):
 
     def __init__(self, d_model: int, vocab_size: int):
@@ -75,3 +84,7 @@ def build_transformer(src_vocab_size: int, tgt_vocab_size: int, src_seq_len: int
             nn.init.xavier_uniform_(p)
 
     return transformer
+
+def get_model(config, vocab_src_len, vocab_tgt_len):
+    model = build_transformer(vocab_src_len, vocab_tgt_len, config['seq_len'], config['seq_len'], config['d_model'])
+    return model

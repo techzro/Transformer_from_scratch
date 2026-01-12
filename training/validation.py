@@ -1,3 +1,7 @@
+import torch
+
+from inference.decode import greedy_decode
+
 def run_validation(model, validation_ds, tokenizer_src, tokenizer_tgt, max_len, device, print_msg, global_state, writer, num_examples=2):
     model.eval()
     count = 0

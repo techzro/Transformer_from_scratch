@@ -1,3 +1,11 @@
+import torch
+import torch.nn as nn
+
+from .attention import MultiHeadAttentionBlock
+from .feedforward import FeedForwardBlock
+from .normalization import LayerNormalization, ResidualConnection
+
+
 class DecoderBlock(nn.Module):
 
     def __init__(self, features: int, self_attention_block: MultiHeadAttentionBlock, cross_attention_block: MultiHeadAttentionBlock, feed_forward_block: FeedForwardBlock, dropout: float):
